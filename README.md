@@ -7,6 +7,7 @@
 git clone git@github.com:mwongess/book_store.git
 ```
 
+### Go to book_store folder
 ```sh
 cd book_store
 ```
