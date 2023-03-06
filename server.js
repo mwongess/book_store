@@ -1,7 +1,7 @@
 const express = require("express");
 const json = express.json
 const connection = require("./config");
-const {v4: uuidv4} = require('uuidv4')
+const {v4: uuidv4} = require('uuid')
 
 const app = express();
 app.use(json())
@@ -26,7 +26,7 @@ app.get("/books", (req, res) => {
 
 app.post("/books",(req, res)=>{
     try {
-        const id = uuidv4
+        const id = uuidv4()
         const {name} = req.body
         const query = `INSERT INTO books VALUES ("${id}", "${name}")`
 
