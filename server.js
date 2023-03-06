@@ -4,7 +4,7 @@ const connection = require("./config");
 const {v4: uuidv4} = require('uuid')
 
 const app = express();
-app.use(json())
+app.use(json()) //Making sure our app accepts json
 
 const PORT = 4000;
 
@@ -13,10 +13,10 @@ app.get("/books", (req, res) => {
     const query = "SELECT * FROM books;";
     connection.query(query, (error, results) => {
         if(error){
-            res.json({ERROR: error})
+            res.json(error)
             return
         }
-        res.json({BOOKS: results})
+        res.json(results)
 
     });
   } catch (error) {
@@ -26,8 +26,8 @@ app.get("/books", (req, res) => {
 
 app.post("/books",(req, res)=>{
     try {
-        const id = uuidv4()
-        const {name} = req.body
+        const id = uuidv4() //Generates unique id
+        const {name} = req.body //We are spreading the request to access book name entered by user when sending the request
         const query = `INSERT INTO books VALUES ("${id}", "${name}")`
 
         connection.query(query, (error,info)=>{
